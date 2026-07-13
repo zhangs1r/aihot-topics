@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 热点选题 · 2026-07-09</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --paper: #FFFFFF;
+    --accent: #CC785C;
+    --accent-light: #E8B4A0;
+    --accent-dark: #A85D40;
+    --text: #1A1A2E;
+    --text-secondary: #6B6B7B;
+    --border: #E8E4DC;
+    --tag-hot: #CC785C;
+    --tag-tool: #5C8FCC;
+    --controversy-bg: #FFF8F0;
+    --controversy-border: #E8A87C;
+    --insight-bg: #F5F9F5;
+    --insight-border: #7AB87A;
+    --line: #F0EBE2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 880px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-light), var(--accent), var(--accent-light), transparent);
+  }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: 2px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .header .meta-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 14px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+  }
+  .stats span { display: flex; align-items: center; gap: 4px; }
+  .stats strong { color: var(--accent); }
+
+  /* Mode badge */
+  .mode-badge {
+    text-align: center;
+    margin: 8px 0 16px;
+  }
+  .mode-badge span {
+    display: inline-block;
+    padding: 3px 14px;
+    background: #EDE6DC;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* Topic card */
+  .topic-card {
+    background: var(--paper);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin: 24px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .topic-card .topic-number {
+    position: absolute;
+    top: -12px;
+    left: 40px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 12px;
+    border-radius: 12px;
+  }
+  .topic-card .topic-number.tool { background: var(--tag-tool); }
+
+  .topic-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .topic-header h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .topic-tag {
+    flex-shrink: 0;
+    padding: 3px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .topic-tag.hot { background: #FDF0EB; color: var(--accent-dark); }
+  .topic-tag.tool { background: #EBF0FD; color: #3D6B9E; }
+
+  .oneliner {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-dark);
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background: #FDF8F5;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin: 20px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .context-block {
+    background: #FAF8F4;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .context-block p { margin-bottom: 6px; }
+  .context-block p:last-child { margin-bottom: 0; }
+
+  .links-section {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #F9F7F2;
+    border-radius: 8px;
+    font-size: 0.8rem;
+  }
+  .links-section a { color: var(--accent); text-decoration: none; display: block; margin: 2px 0; }
+  .links-section a:hover { text-decoration: underline; }
+
+  /* Core insight */
+  .insight-block {
+    background: var(--insight-bg);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-left: 3px solid var(--insight-border);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .insight-block .insight-label {
+    font-weight: 700;
+    color: #4A8A4A;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* Hidden signal */
+  .signal-block {
+    background: #F0F5FA;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin: 12px 0;
+    border-left: 3px solid #5C8FCC;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .signal-block .sig-label {
+    font-weight: 700;
+    color: #3D6B9E;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* Controversy summary */
+  .controversy-block {
+    background: var(--controversy-bg);
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin: 12px 0;
+    border-left: 3px solid var(--controversy-border);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .controversy-block .ct-label {
+    font-weight: 700;
+    color: #C07050;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* Outline */
+  .outline-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .outline-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #F5F2EC;
+  }
+  .outline-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-light);
+  }
+  .outline-list li:last-child { border-bottom: none; }
+  .outline-list li .step {
+    font-weight: 600;
+    display: inline-block;
+    min-width: 60px;
+    color: var(--accent);
+  }
+
+  /* Divider */
+  .section-divider {
+    text-align: center;
+    padding: 40px 0 20px;
+    position: relative;
+  }
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+  }
+  .section-divider span {
+    position: relative;
+    background: var(--bg);
+    padding: 0 16px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 2;
+  }
+
+  /* Responsive */
+  .workspace-topbar{background:rgba(204,120,92,.08);border-bottom:1px solid var(--border);padding:6px 24px;font-size:.8rem;text-align:center}
+  .workspace-topbar a{color:var(--accent-deep);font-weight:600;text-decoration:none}
+  .workspace-topbar a:hover{text-decoration:underline}
+  .workspace-topbar .sep{color:var(--ink-20);margin:0 8px}
+  .workspace-topbar .current{color:var(--ink-60)}
+
+  @media (max-width: 640px) {
+    body { padding: 20px 12px; }
+    .topic-card { padding: 28px 20px; }
+    .topic-header { flex-direction: column; }
+    .topic-header h2 { font-size: 1.1rem; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .topic-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+<div class="workspace-topbar">
+  <a href="https://zhangs1r.github.io/lessonworkspace/">📚 LessonWorkspace</a>
+  <span class="sep">/</span>
+  <a href="https://zhangs1r.github.io/aihot-topics/">AIHOT Topics</a>
+  <span class="sep">/</span>
+  <span class="current">2026-07-09</span>
+</div>
+<div class="container">
+
+<div class="header">
+  <h1>AI 热点选题策划</h1>
+  <div class="subtitle">
+    <span>2026-07-09</span>
+    <span>·</span>
+    <span>基于 AI HOT 近 3 天资讯</span>
+    <span>·</span>
+    <span>3 个选题（优化版 v2）</span>
+  </div>
+  <div class="meta-badge">⚡ 快速模式 · 50 条精选 · 2 热点 + 1 工具</div>
+</div>
+
+<div class="mode-badge">
+  <span>v2 优化 · 单层核心洞察取代三层拆解 · 争议点摘要展示给作者 · Markdown+HTML 双输出</span>
+</div>
+
+<div class="stats">
+  <span>📊 近 3 日精选 <strong>50</strong> 条</span>
+  <span>🎯 标记 <strong>8</strong> 条高价值</span>
+  <span>🔗 隐性关联 <strong>3</strong> 组</span>
+  <span>✅ 对抗审查 <strong>2 维</strong></span>
+</div>
+
+<!-- ============================================================ -->
+<!-- 选题 1 -->
+<!-- ============================================================ -->
+<div class="topic-card">
+  <div class="topic-number">选题 01</div>
+  <div class="topic-header">
+    <h2>GPT-5.6 获批 + AI Agent 安全事件密集爆发——AI 的「iPhone 4 时刻」还是「斯诺登时刻」？</h2>
+    <span class="topic-tag hot">热点解读</span>
+  </div>
+  <div class="oneliner">一周之内：GPT-5.6 获批发布、GitHub AI Agent 被注入、AI 可组装僵尸网络——AI 的能力和安全同时到了临界点。</div>
+
+  <div class="section-label">📖 来龙去脉</div>
+  <div class="context-block">
+    <p><strong>事件一：GPT-5.6 获批大规模发布</strong> — 7 月 8 日，美国商务部批准 OpenAI 大规模发布 GPT-5.6，代号"Sol"明日亮相。这是 GPT 系列首次在发布前获得商务部层面的审批放行，标志着大模型监管从"事后追责"进入"事前审批"阶段。</p>
+    <p><strong>事件二：GitHub AI 代理提示词注入漏洞</strong> — Noma Labs 发现的 GitLost 漏洞——攻击者可通过精心构造的提示词注入，让 GitHub 上的 AI 代理执行非预期操作。这是 AI Agent 供应链安全的第一个公开案例。</p>
+    <p><strong>事件三：9 款主流 AI 工具可被组装为僵尸网络</strong> — Ars Technica 报道，研究者发现利用 9 款最流行的 AI 工具可组装大规模僵尸网络，AI 工具正在成为攻击者的基础设施。</p>
+    <p><strong>事件四：Sysdig 澄清首例 Agent 勒索软件</strong> — 此前引发恐慌的 JadePuffer，Sysdig 最新澄清：AI 执行了攻击链路中的自动化步骤，但人类仍负责设置目标。</p>
+    <div class="links-section">
+      📎 <a href="https://aihot.virxact.com/items/cmrbkf2e804qlihl1e8qe5q4a" target="_blank">美国商务部批准 OpenAI 大规模发布 GPT-5.6</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrbu023x079pihl1q4rvhzky" target="_blank">GitLost：GitHub AI 代理提示词注入漏洞</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrbqwsid06g2ihl1iiwufnz5" target="_blank">9 款 AI 工具可组装大规模僵尸网络</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrboci2105r3ihl1zmi6wgpf" target="_blank">Sysdig 澄清首例 Agent 勒索软件</a>
+    </div>
+  </div>
+
+  <div class="section-label">🔬 核心洞察</div>
+  <div class="insight-block">
+    <div class="insight-label">一句话讲透本质</div>
+    <p>GPT-5.6 获批和安全事件密集爆发不是巧合——它们是一枚硬币的两面。AI 能力每上一个台阶，AI 攻击能力也同步上台阶，而且攻击的"门槛"在降低（工具化）。<strong>能力放行速度 > 安全防御建设速度</strong>——这个剪刀差是接下来 6 个月最值得关注的 AI 宏观趋势。</p>
+  </div>
+
+  <div class="section-label">📡 隐藏信号</div>
+  <div class="signal-block">
+    <div class="sig-label">AI 安全叙事正在"去恐慌化"</div>
+    <p>Sysdig 的"澄清"本身就是一个信号：首例 Agent 勒索软件的叙事从"AI 完全自主攻击"下调为"AI 执行 + 人类设置"，说明行业正在对 AI 安全叙事做"去恐慌化"处理。这不是坏事——真正的风险不在"AI 觉醒后攻击人类"，而在"人类用 AI 工具降低了攻击门槛"这件更无聊但也更真实的事。</p>
+  </div>
+
+  <div class="section-label">📄 文章大纲</div>
+  <ul class="outline-list">
+    <li><span class="step">引子</span>一周四件事——把它们放在一起看，不是巧合</li>
+    <li><span class="step">事实层</span>GPT-5.6 获批意味着什么（监管从追责→审批）</li>
+    <li><span class="step">事实层</span>三个安全事件的共同点：AI 工具被武器化</li>
+    <li><span class="step">洞察</span>能力放行 vs 安全建设的剪刀差</li>
+    <li><span class="step">信号</span>Sysdig 澄清的深层含义</li>
+    <li><span class="step">对抗</span>这是好消息还是坏消息？两面的证据</li>
+    <li><span class="step">行动</span>普通开发者和企业现在应该做什么</li>
+  </ul>
+
+  <div class="section-label">⚠️ 争议点摘要</div>
+  <div class="controversy-block">
+    <div class="ct-label">写文章时需要注意防守的方向</div>
+    <p>最大的风险是"把不相关的事件强行关联"——GPT-5.6 获批是监管事件，安全事件是技术漏洞，两者可能只是时间上巧合。写文章时要注意：① 明确区分"相关性"和"因果性"，不要强行制造叙事；② Sysdig 澄清的调性要准确——它是"修正过度恐慌"而非"否定风险"；③ 给读者一个清晰的判断框架，而不是制造焦虑。</p>
+  </div>
+
+  <!-- 对抗式审查 -->
+  <!-- 对抗式审查：原稿将四件事打包为"AI 安全临界点"叙事。盲点审查发现：GPT-5.6 获批和安全事件可能只是时间巧合，强行关联有误导风险。修正后加入了"相关 vs 因果"的区分，并将 Sysdig 澄清从"否定"重新定位为"去恐慌化"。受众审查发现：非技术读者需要可操作的行动建议而非纯分析。修正后增加了"行动建议"大纲条目。争议点：事件关联性的逻辑强度。 -->
+</div>
+
+<!-- ============================================================ -->
+<!-- 选题 2 -->
+<!-- ============================================================ -->
+<div class="topic-card">
+  <div class="topic-number tool">选题 02</div>
+  <div class="topic-header">
+    <h2>多智能体协作实操指南——从 Advisor 到 Orchestrator，Claude 开发者总结的两种模式</h2>
+    <span class="topic-tag tool">工具实操</span>
+  </div>
+  <div class="oneliner">Claude Devs 详解的四种智能体循环 + 邵猛总结的两种多智能体模式——把"多 Agent"从概念落到代码。</div>
+
+  <div class="section-label">📖 来龙去脉</div>
+  <div class="context-block">
+    <p>本周两条与 AI Agent 架构相关的实操内容密集出现：</p>
+    <p><strong>① Claude Devs 详解四种智能体循环类型</strong> — 将 Claude Code 的智能体循环归纳为四种类型，每种适配不同的任务场景。</p>
+    <p><strong>② 邵猛总结两种多智能体模式：Advisor 和 Orchestrator</strong> — Advisor（顾问模式：一个主 Agent 咨询多个子 Agent）和 Orchestrator（编排模式：一个主 Agent 调度多个子 Agent）。每条都有具体的代码示例和适用场景。</p>
+    <p>同时，Elvis Saravia 也分享了通过 HITL（Human In The Loop）和 DialAgent 提升 Agent 循环可靠性的方法。</p>
+    <div class="links-section">
+      📎 <a href="https://aihot.virxact.com/items/cmrc1iygj00twihyfe1hkvycv" target="_blank">Claude Devs 详解四种智能体循环类型</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrbdqlcv02y4ihl11xbxx9xs" target="_blank">邵猛：两种多智能体模式 Advisor 和 Orchestrator</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrbikwbz04b5ihl16qfp5ntw" target="_blank">Elvis Saravia：HITL 和 DialAgent 提升 Agent 可靠性</a>
+    </div>
+  </div>
+
+  <div class="section-label">🔬 核心洞察</div>
+  <div class="insight-block">
+    <div class="insight-label">一句话讲透本质</div>
+    <p>多智能体系统正在从"学术概念"走向"工程实践"。Advisor vs Orchestrator 的二分法本质上在解决同一个问题：<strong>如何在"让 Agent 自主决策"和"保持人类可控"之间找到平衡</strong>。Advisor 模式偏向"集权"（一个大脑做决策），Orchestrator 偏向"分权"（多个专业 Agent 协作）。选择哪种模式，取决于你对"出错成本"的容忍度。</p>
+  </div>
+
+  <div class="section-label">📡 隐藏信号</div>
+  <div class="signal-block">
+    <div class="sig-label">与你直接相关</div>
+    <p>对于正在做 AI Agent 的你（研一，机器人 ROS+AI Agent），Advisor 模式特别适合机器人场景——一个主 Agent 做规划，多个子 Agent 分管感知/控制/导航。这比"一个大模型搞定一切"更可靠、更可调试。</p>
+  </div>
+
+  <div class="section-label">📄 文章大纲</div>
+  <ul class="outline-list">
+    <li><span class="step">痛点</span>多 Agent 听起来很酷，但怎么落地？</li>
+    <li><span class="step">SOP 1</span>Advisor 模式：一个大脑+多个顾问的架构与代码</li>
+    <li><span class="step">SOP 2</span>Orchestrator 模式：专业分工+调度器的架构与代码</li>
+    <li><span class="step">对比</span>什么场景用 Advisor，什么场景用 Orchestrator</li>
+    <li><span class="step">进阶</span>HITL（人在回路）如何提升可靠性</li>
+    <li><span class="step">避坑</span>多 Agent 常见的三个陷阱</li>
+    <li><span class="step">落地</span>在机器人 ROS+AI Agent 场景中怎么用</li>
+  </ul>
+
+  <div class="section-label">⚠️ 争议点摘要</div>
+  <div class="controversy-block">
+    <div class="ct-label">写文章时需要注意防守的方向</div>
+    <p>① 邵猛总结的两种模式是个人经验，尚未经过大规模验证——要说清楚这是"社区最佳实践"而非"官方标准"；② Advisor 和 Orchestrator 的边界在实际项目中可能模糊，不要给读者"非此即彼"的错觉；③ 代码示例要可运行，不要伪代码。</p>
+  </div>
+
+  <!-- 对抗式审查 -->
+  <!-- 对抗式审查：盲点审查发现——两种模式的二分法过于简化，实际项目可能是混合模式。修正后加入了"边界模糊"的提醒。受众审查发现——读者可能期望可运行的代码示例而非概念描述。修正后大纲中强调代码示例的可运行性。争议点：模式分类的普适性。 -->
+</div>
+
+<!-- ============================================================ -->
+<!-- 选题 3 -->
+<!-- ============================================================ -->
+<div class="topic-card">
+  <div class="topic-number">选题 03</div>
+  <div class="topic-header">
+    <h2>微软用自研 MAI 模型替换 OpenAI——大厂"去外部依赖"的连锁反应开始了</h2>
+    <span class="topic-tag hot">热点解读</span>
+  </div>
+  <div class="oneliner">微软在 Copilot 中用自研 MAI 替换 GPT——当"最大客户"开始自己做，API 生意还成立吗？</div>
+
+  <div class="section-label">📖 来龙去脉</div>
+  <div class="context-block">
+    <p>据 The Decoder 报道，微软为降低成本，开始在 Copilot 中用自研 MAI 模型替换 OpenAI 和 Anthropic 的模型。</p>
+    <p>与此同时两件相关的事：Anthropic 将 Claude Fable 5 变为"管理者"角色，把具体任务委派给成本更低的 Sonnet 5；OpenRouter 自动升级至 Grok 4.5。</p>
+    <p>三条新闻指向同一个趋势：<strong>大模型 API 市场的"去中间商化"</strong>——应用层玩家向上游整合，模型层玩家向下游压缩成本。</p>
+    <div class="links-section">
+      📎 <a href="https://aihot.virxact.com/items/cmrb0u6pv02qtihogovduu795" target="_blank">微软用自研 MAI 模型替换 OpenAI 和 Anthropic 模型</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrcaxs6f0167ihqcwsmikn9t" target="_blank">Anthropic 为降成本将 Fable 5 变为管理者</a>
+      📎 <a href="https://aihot.virxact.com/items/cmrc9es9y00rpihqckxdynyjh" target="_blank">OpenRouter 自动升级至 Grok 4.5</a>
+    </div>
+  </div>
+
+  <div class="section-label">🔬 核心洞察</div>
+  <div class="insight-block">
+    <div class="insight-label">一句话讲透本质</div>
+    <p>微软替换 OpenAI 的本质不是"技术路线之争"，而是<strong>价值链上的利润池在迁移</strong>。当大模型从"稀缺能力"变成"基础设施"时，利润会从模型层（OpenAI/Anthropic）流向应用层（微软/Google）和中间层（OpenRouter/Cloudflare）。微软自己造模型不是为了"比 GPT-5.6 更强"，而是为了把 Copilot 的利润率从"替 OpenAI 打工"变成"全归自己"。</p>
+  </div>
+
+  <div class="section-label">📡 隐藏信号</div>
+  <div class="signal-block">
+    <div class="sig-label">对中小企业的影响被低估了</div>
+    <p>如果微软这种体量的客户都开始自研模型，那么依赖单一 API 提供商的商业模式会面临"定价权丧失"的风险。未来 12 个月，"多模型后备"将从"最佳实践"变成"生存必需"。</p>
+  </div>
+
+  <div class="section-label">📄 文章大纲</div>
+  <ul class="outline-list">
+    <li><span class="step">引子</span>微软为什么要换掉 GPT？成本账算给你看</li>
+    <li><span class="step">事实层</span>三家公司的动作：微软换、Anthropic 降、OpenRouter 升</li>
+    <li><span class="step">洞察</span>AI 价值链的利润迁移</li>
+    <li><span class="step">对抗</span>自研模型真的有性价比吗？MAI vs GPT 的差距</li>
+    <li><span class="step">信号</span>对中小开发者的真正影响</li>
+    <li><span class="step">行动</span>如何构建"模型无关"的应用架构</li>
+  </ul>
+
+  <div class="section-label">⚠️ 争议点摘要</div>
+  <div class="controversy-block">
+    <div class="ct-label">写文章时需要注意防守的方向</div>
+    <p>最大的风险是过度解读。微软自研 MAI 模型的能力未必能追上 GPT-5.6——可能只是针对 Copilot 的特定场景做了优化（代码补全/Office 任务），而不是全面替换。写文章时要区分"Copilot 场景的替换"和"全面替换 OpenAI"——前者是战术降本，后者才是战略转向。不要写成"OpenAI 要完了"这种标题党。</p>
+  </div>
+
+  <!-- 对抗式审查 -->
+  <!-- 对抗式审查：盲点审查发现——"利润迁移"叙事假定 MAI 与 GPT 能力相当，但 MAI 目前仅在 Copilot 场景验证。修正后加入了"场景限制"提醒。受众审查发现——读者可能对"模型无关架构"的技术方案更感兴趣而非纯商业分析。修正后大纲加入了"行动建议"条目聚焦技术方案。争议点：趋势放大的尺度问题。 -->
+</div>
+
+<!-- ============================================================ -->
+<!-- Footer -->
+<!-- ============================================================ -->
+<div class="footer">
+  <div>📡 数据来源：<a href="https://aihot.virxact.com" target="_blank" style="color:var(--accent);text-decoration:none;">AI HOT</a></div>
+  <div style="margin-top:8px">
+    选题策划 · 2026-07-09<br>
+    基于近 3 天 AI 精选动态 · 快速模式 3 个选题<br>
+    工作流版本：v2（优化版）——核心洞察取代三层拆解 · 2 维审查 · 争议摘要展示
+  </div>
+  <div style="margin-top:8px;font-size:0.75rem;color:var(--text-secondary)">
+    ✏️ Markdown 文件已同步输出：<code>ai-topics-20260709-2350.md</code><br>
+    如需将某个选题扩展为完整文章，请告知选题编号，可直接跳转到写作流程。
+  </div>
+</div>
+
+</div>
+</body>
+</html>
