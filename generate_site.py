@@ -354,9 +354,9 @@ def update_index_html(today_data, all_archives):
         flags=_re.DOTALL
     )
 
-    # 替换 count
+    # 替换 count — 支持占位符 —— 或已有的 "N 个选题" 格式
     content = _re.sub(
-        r'<span class="count">——</span>',
+        r'<span class="count">[^<]*</span>',
         f'<span class="count">{count_text}</span>',
         content
     )
