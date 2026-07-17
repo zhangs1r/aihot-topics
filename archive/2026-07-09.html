@@ -98,7 +98,7 @@
   .mode-badge span {
     display: inline-block;
     padding: 3px 14px;
-    background: #EDE6DC;
+    background: var(--border);
     border-radius: 20px;
     font-size: 0.75rem;
     color: var(--text-secondary);
@@ -150,7 +150,7 @@
     font-weight: 600;
   }
   .topic-tag.hot { background: #FDF0EB; color: var(--accent-dark); }
-  .topic-tag.tool { background: #EBF0FD; color: #3D6B9E; }
+  .topic-tag.tool { background: var(--green-dim); color: var(--green); }
 
   .oneliner {
     font-size: 0.95rem;
@@ -158,7 +158,7 @@
     color: var(--accent-dark);
     margin-bottom: 20px;
     padding: 8px 16px;
-    background: #FDF8F5;
+    background: var(--paper-light);
     border-left: 3px solid var(--accent);
     border-radius: 0 8px 8px 0;
   }
@@ -174,7 +174,7 @@
   }
 
   .context-block {
-    background: #FAF8F4;
+    background: var(--paper-light);
     border-radius: 10px;
     padding: 16px 20px;
     margin: 12px 0;
@@ -187,7 +187,7 @@
   .links-section {
     margin-top: 10px;
     padding: 10px 14px;
-    background: #F9F7F2;
+    background: var(--paper-light);
     border-radius: 8px;
     font-size: 0.8rem;
   }
@@ -206,7 +206,7 @@
   }
   .insight-block .insight-label {
     font-weight: 700;
-    color: #4A8A4A;
+    color: var(--green);
     font-size: 0.75rem;
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -224,7 +224,7 @@
   }
   .signal-block .sig-label {
     font-weight: 700;
-    color: #3D6B9E;
+    color: var(--accent-deep);
     font-size: 0.75rem;
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -242,7 +242,7 @@
   }
   .controversy-block .ct-label {
     font-weight: 700;
-    color: #C07050;
+    color: var(--accent);
     font-size: 0.75rem;
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -333,6 +333,7 @@
   }
   @media (prefers-color-scheme: dark) {
     :root {
+      --bg: #1A1A2E;
       --paper: #1A1A2E;
       --paper-light: #22223A;
       --ink: #EDEDEE;
@@ -350,6 +351,15 @@
       --green: #7AB893;
       --green-dim: rgba(122, 184, 147, 0.12);
       --gold-dim: rgba(212, 168, 83, 0.12);
+      /* old variable names compat */
+      --text: #EDEDEE;
+      --text-secondary: #A0A0B0;
+      --accent-dark: #F0C8B8;
+      --controversy-bg: rgba(232, 168, 140, 0.10);
+      --controversy-border: #C88A72;
+      --insight-bg: rgba(122, 184, 147, 0.10);
+      --insight-border: #7AB893;
+      --line: #3A3A4A;
     }
     body { background: var(--paper); color: var(--ink); }
     .archive-card { background: var(--paper-light); }
