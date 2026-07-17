@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      @keyframes draw-1 { 0% { stroke-dashoffset: 70; } 100% { stroke-dashoffset: 0; } }
+      @keyframes bounce {
+        0%   { transform: scale(1) rotate(0deg); }
+        30%  { transform: scale(1.18) rotate(3deg); }
+        55%  { transform: scale(0.92) rotate(-2deg); }
+        78%  { transform: scale(1.06) rotate(1deg); }
+        100% { transform: scale(1) rotate(0deg); }
+      }
+      .path-a { animation: draw-1 1.2s ease-in-out forwards; }
+      .bounce { animation: bounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.4s forwards; transform-origin: center; }
+    </style>
+  </defs>
+  <g class="bounce" fill="none" stroke="#CC785C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Paperclip — two nested loops -->
+    <path class="path-a" d="M14 5 L8 17 C7 19 5 19 5 17 C5 15 8 14 10 14 L16 6 C17 4 19 4 19 6 C19 8 16 9 14 9 L10 17" stroke-dasharray="70" stroke-dashoffset="70"/>
+  </g>
+</svg>

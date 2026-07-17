@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      @keyframes draw-1 { 0% { stroke-dashoffset: 60; } 100% { stroke-dashoffset: 0; } }
+      @keyframes draw-2 { 0% { stroke-dashoffset: 40; } 100% { stroke-dashoffset: 0; } }
+      @keyframes draw-3 { 0% { stroke-dashoffset: 30; } 100% { stroke-dashoffset: 0; } }
+      @keyframes bounce {
+        0%   { transform: scale(1) rotate(0deg); }
+        30%  { transform: scale(1.18) rotate(3deg); }
+        55%  { transform: scale(0.92) rotate(-2deg); }
+        78%  { transform: scale(1.06) rotate(1deg); }
+        100% { transform: scale(1) rotate(0deg); }
+      }
+      .path-a { animation: draw-1 0.9s ease-in-out forwards; }
+      .path-b { animation: draw-2 0.9s ease-in-out 0.15s forwards; }
+      .path-c { animation: draw-3 0.9s ease-in-out 0.30s forwards; }
+      .bounce { animation: bounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.5s forwards; transform-origin: center; }
+    </style>
+  </defs>
+  <g class="bounce" fill="none" stroke="#CC785C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path class="path-a" d="M6 4 h12 v18 H6 Z" stroke-dasharray="60" stroke-dashoffset="60"/>
+    <path class="path-b" d="M9 4 V3 C9 2 10 1 12 1 C14 1 15 2 15 3 v1" stroke-dasharray="40" stroke-dashoffset="40"/>
+    <line class="path-c" x1="9" y1="9" x2="15" y2="9" stroke-dasharray="30" stroke-dashoffset="30"/>
+    <line class="path-c" x1="9" y1="12" x2="15" y2="12" stroke-dasharray="30" stroke-dashoffset="30"/>
+    <line class="path-c" x1="9" y1="15" x2="13" y2="15" stroke-dasharray="30" stroke-dashoffset="30"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+  <defs>
+    <style>
+      @keyframes draw { 0% { stroke-dashoffset:84; } 100% { stroke-dashoffset:0; } }
+      @keyframes fpop { 0% { opacity:0; transform:scale(0); } 60% { opacity:1; transform:scale(1.2); } 100% { opacity:1; transform:scale(1); } }
+      @keyframes bounce {
+        0%   { transform:scale(1) rotate(0deg); }
+        30%  { transform:scale(1.18) rotate(3deg); }
+        55%  { transform:scale(0.92) rotate(-2deg); }
+        78%  { transform:scale(1.06) rotate(1deg); }
+        100% { transform:scale(1) rotate(0deg); }
+      }
+      .p0 { animation: draw 1.4s ease-in-out 0.0s forwards; stroke-dasharray:84; stroke-dashoffset:84; }
+      .p1 { animation: draw 0.6s ease-in-out 0.15s forwards; stroke-dasharray:20; stroke-dashoffset:20; }
+      .p2 { animation: draw 1.4s ease-in-out 0.3s forwards; stroke-dasharray:84; stroke-dashoffset:84; }
+      .bx { animation: bounce 0.7s cubic-bezier(0.34,1.56,0.64,1) 1.9s forwards; }
+    </style>
+  </defs>
+  <g class="bx">
+      <path class="p0" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" fill="none" stroke="#CC785C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="p1" d="M2 12h20" fill="none" stroke="#CC785C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="p2" d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z" fill="none" stroke="#CC785C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

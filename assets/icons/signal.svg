@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+  <defs>
+    <style>
+      @keyframes draw { 0% { stroke-dashoffset:84; } 100% { stroke-dashoffset:0; } }
+      @keyframes fpop { 0% { opacity:0; transform:scale(0); } 60% { opacity:1; transform:scale(1.2); } 100% { opacity:1; transform:scale(1); } }
+      @keyframes bounce {
+        0%   { transform:scale(1) rotate(0deg); }
+        30%  { transform:scale(1.18) rotate(3deg); }
+        55%  { transform:scale(0.92) rotate(-2deg); }
+        78%  { transform:scale(1.06) rotate(1deg); }
+        100% { transform:scale(1) rotate(0deg); }
+      }
+      .p0 { animation: draw 0.7s ease-in-out 0.0s forwards; stroke-dasharray:42; stroke-dashoffset:42; }
+      .p1 { animation: draw 0.7s ease-in-out 0.15s forwards; stroke-dasharray:42; stroke-dashoffset:42; }
+      .p2 { animation: draw 0.7s ease-in-out 0.3s forwards; stroke-dasharray:42; stroke-dashoffset:42; }
+      .p3 { animation: fpop 1.4s cubic-bezier(0.34,1.56,0.64,1) 0.44999999999999996s forwards; opacity:0; }
+      .bx { animation: bounce 0.7s cubic-bezier(0.34,1.56,0.64,1) 2.05s forwards; }
+    </style>
+  </defs>
+  <g class="bx">
+      <path class="p0" d="M5 5a14 14 0 0 1 14 0" fill="none" stroke="#CC785C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="p1" d="M8 8a8 8 0 0 1 8 0" fill="none" stroke="#CC785C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="p2" d="M11 11a3 3 0 0 1 2 0" fill="none" stroke="#CC785C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="p3" d="M12 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#CC785C" stroke="none"/>
+  </g>
+</svg>
