@@ -346,12 +346,17 @@
       --border-light: #2A2A3A;
       --tag-hot: #E8A88C;
       --tag-tool: #7AB8C0;
+      --accent-glow: rgba(232, 168, 140, 0.08);
+      --green: #7AB893;
+      --green-dim: rgba(122, 184, 147, 0.12);
+      --gold-dim: rgba(212, 168, 83, 0.12);
     }
     body { background: var(--paper); color: var(--ink); }
     .archive-card { background: var(--paper-light); }
     .topic-card { background: var(--paper-light); }
     a { color: var(--accent-deep); }
-    img { opacity: 0.85; transition: opacity 0.3s; }
+    .controversy-box { background: rgba(212, 168, 83, 0.10) !important; color: var(--ink-60) !important; border-left-color: var(--gold) !important; }
+  img { opacity: 0.85; transition: opacity 0.3s; }
     img:hover { opacity: 1; }
   }
 
