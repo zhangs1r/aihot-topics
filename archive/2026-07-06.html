@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../theme.css">
 <title>AI 公众号选题策划 · 2026-07-06 23:45</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -312,6 +313,30 @@
     .topic-header { flex-direction: column; gap: var(--space-2); }
     .first-principles .fp-row { flex-direction: column; gap: var(--space-1); }
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1A1A2E;
+      --paper-light: #22223A;
+      --ink: #EDEDEE;
+      --ink-60: #A0A0B0;
+      --ink-40: #707080;
+      --accent: #E8A88C;
+      --accent-light: #C88A72;
+      --accent-deep: #F0C8B8;
+      --accent-dim: rgba(232, 168, 140, 0.15);
+      --border: #3A3A4A;
+      --border-light: #2A2A3A;
+      --tag-hot: #E8A88C;
+      --tag-tool: #7AB8C0;
+    }
+    body { background: var(--paper); color: var(--ink); }
+    .archive-card { background: var(--paper-light); }
+    .topic-card { background: var(--paper-light); }
+    a { color: var(--accent-deep); }
+    img { opacity: 0.85; transition: opacity 0.3s; }
+    img:hover { opacity: 1; }
+  }
+
 </style>
 </head>
 <body>

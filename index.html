@@ -8,63 +8,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 <style>
 :root {
-  --paper:        #F7F4EE;
-  --paper-light:  #FBFAF7;
-  --ink:          #1A1A2E;
-  --ink-80:       #3A3A4A;
-  --ink-60:       #5A5A6A;
-  --ink-40:       #8A8A9A;
-  --ink-20:       #BABAC6;
-  --accent:       #CC785C;
-  --accent-light: #E8C4B0;
-  --accent-deep:  #A85D42;
-  --accent-dim:   rgba(204, 120, 92, 0.12);
-  --accent-glow:  rgba(204, 120, 92, 0.08);
-  --border:       #E8E4DC;
-  --border-light: #F0ECE4;
-  --green:        #5A9E6F;
-  --green-dim:    rgba(90, 158, 111, 0.12);
-  --gold:         #D4A853;
-  --gold-dim:     rgba(212, 168, 83, 0.12);
-  --font-serif:   'Noto Serif SC', Georgia, 'Times New Roman', serif;
-  --font-sans:    'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
-  --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --space-1:  0.25rem;
-  --space-2:  0.5rem;
-  --space-3:  0.75rem;
-  --space-4:  1rem;
-  --space-5:  1.25rem;
-  --space-6:  1.5rem;
-  --space-7:  1.75rem;
-  --space-8:  2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-14: 3.5rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
-  --shadow-sm:  0 1px 2px rgba(26, 26, 46, 0.04);
-  --shadow-md:  0 4px 12px rgba(26, 26, 46, 0.06);
-  --shadow-lg:  0 8px 30px rgba(26, 26, 46, 0.08);
+  --accent-glow: rgba(204, 120, 92, 0.08);
+  --green: #5A9E6F;
+  --green-dim: rgba(90, 158, 111, 0.12);
+  --gold: #D4A853;
+  --gold-dim: rgba(212, 168, 83, 0.12);
   --content-width: 960px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-sans);
   background: var(--paper);
   color: var(--ink);
   line-height: 1.7;
@@ -160,9 +114,14 @@ a:hover { color: var(--accent); text-decoration: underline; }
 .topic-card {
   background: var(--paper-light); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: var(--space-7);
-  margin-bottom: var(--space-5); transition: box-shadow .2s;
+  margin-bottom: var(--space-5);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease;
 }
-.topic-card:hover { box-shadow: var(--shadow-lg); }
+.topic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.topic-card:active { transform: scale(0.98); }
 .topic-card .topic-header {
   display: flex; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-4);
 }
@@ -185,7 +144,7 @@ a:hover { color: var(--accent); text-decoration: underline; }
 }
 .topic-card .tag-hot { background: var(--accent-dim); color: var(--accent-deep); }
 .topic-card .tag-tool { background: var(--green-dim); color: var(--green); }
-.topic-card .tag-trend { background: var(--gold-dim); color: #B8943A; }
+.topic-card .tag-trend { background: var(--gold-dim); color: var(--gold); }
 
 .topic-card .oneliner {
   font-size: var(--text-sm); color: var(--ink-60);
@@ -231,9 +190,9 @@ a:hover { color: var(--accent); text-decoration: underline; }
 }
 .topic-card .controversy-box {
   font-size: var(--text-sm); line-height: 1.6;
-  padding: var(--space-3) var(--space-4); background: #FFF8E8;
+  padding: var(--space-3) var(--space-4); background: var(--gold-dim);
   border-radius: var(--radius-md); border-left: 3px solid var(--gold);
-  color: #7A6A3A;
+  color: var(--gold);
 }
 .topic-card .links-box { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .topic-card .links-box a {
@@ -312,6 +271,13 @@ a:hover { color: var(--accent); text-decoration: underline; }
   .workspace-topbar { font-size: 0.7rem; padding: 4px 16px; }
   .archive-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 }
+
+@media (prefers-color-scheme: dark) {
+  .topic-card .controversy-box {
+    background: rgba(212, 168, 83, 0.08);
+    color: var(--gold);
+  }
+}
 </style>
 </head>
 <body>
@@ -324,7 +290,7 @@ a:hover { color: var(--accent); text-decoration: underline; }
 
 <div class="hero">
   <div class="inner">
-    <h1>AIHOT <span class="accent">Topics</span></h1>
+    <h1 class="animate-in">AIHOT <span class="accent">Topics</span></h1>
     <p class="subtitle">
       基于 AI HOT 实时资讯，每天自动策展公众号选题。<br>
       热点解读 × 工具实战，锁定当周写作方向。
@@ -676,5 +642,11 @@ a:hover { color: var(--accent); text-decoration: underline; }
   </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var topics = document.getElementById('topicsContent');
+  if (topics) topics.classList.add('animate-stagger');
+});
+</script>
 </body>
 </html>
