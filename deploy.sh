@@ -20,7 +20,8 @@ fi
 # Push (use proxy if needed for WSL)
 if git remote get-url origin &>/dev/null; then
   echo "📤 Pushing to GitHub..."
-  git -c http.proxy=http://127.0.0.1:7893 push origin main
+  # Use SSH (HTTPS may be blocked in some networks)
+  git push origin main
   echo "✅ Deployed!"
 else
   echo "⚠️  No remote configured. Set up with:"
